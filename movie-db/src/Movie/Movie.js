@@ -9,7 +9,15 @@ class Movie extends Component {
   };
 
   render() {
-    return <div> Movie's Here </div>;
+    return (
+      <div>
+        <div> Movie's Here </div>
+        <div> Movie's Here 2</div>
+        <div> Movie's Here 3</div>
+        <div> Movie's Here 4</div>
+        <div> Movie's Here 5</div>
+      </div>
+    );
   }
 }
 
