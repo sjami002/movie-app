@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 
-const MovieThumb = () => {
-  return <div> Movie Thumb </div>;
+const MovieThumb = props => {
+  return (
+    <div className="rmdb-moviethumb">
+      <img src={props.image} alt="moviethumb" />{" "}
+    </div>
+  );
 };
 
 export default MovieThumb;

@@ -33,6 +33,7 @@ class Homepage extends Component {
   }
 
   searchItems = searchTerm => {
+    console.log(searchTerm);
     let endpoint = "";
     this.setState({
       movies: [],
@@ -102,9 +103,30 @@ class Homepage extends Component {
             <SearchBar callback={this.searchItems} />
           </div>
         ) : null}
-        <FourColGrid />
-        <Spinner />
-        <LoadMoreBtn />
+        <div className="rmdb-home-grid">
+          <FourColGrid
+            header={searchTerm ? "Search Result" : "Popular Movies"}
+            loading={loading}
+          >
+            {movies.map((element, i) => (
+              <MovieThumb
+                key={i}
+                clickable={true}
+                image={
+                  element.poster_path
+                    ? `${IMAGE_BASE_URL}${POSTER_SIZE}${element.poster_path}`
+                    : "./images/no_image.jpg"
+                }
+                movieId={element.id}
+                movieName={element.original_title}
+              />
+            ))}
+          </FourColGrid>
+          {loading ? <Spinner /> : null}
+          {currentPage <= totalPages && !loading ? (
+            <LoadMoreBtn text="Load More" onClick={this.loadMoreItems} />
+          ) : null}
+        </div>
       </div>
     );
   }
